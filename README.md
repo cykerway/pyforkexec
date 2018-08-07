@@ -16,8 +16,8 @@ split into 2 sections: the *init* section and the *run* section:
 typically, the *init* section needs to be run only once, while the *run* section
 may be run multiple times which all share the same context created by the *init*
 section. therefore, if the *init* section takes a long time, then it's better to
-run it once and cache the context for following *run* sections. in this way, the
-*run* section no longer suffers the overhead from the *init* section.
+run it once and cache the context for the following *run* sections. in this way,
+the *run* section no longer suffers the overhead from the *init* section.
 
 the implementation uses a client-server architecture in which communication is
 done through a unix domain socket. the user runs a script using the client. but
@@ -64,11 +64,11 @@ with `pyforkexec`, we can run it as:
 
 -   server:
 
-        # python3 -c "$(cat examples/helloworld-init.py)"
+        # python3 server.py "$(cat examples/helloworld-init.py)"
 
 -   client:
 
-        # time python3 -c "$(cat examples/helloworld-run.py)"
+        # time python3 client.py "$(cat examples/helloworld-run.py)"
         <_sre.SRE_Match object; span=(0, 10), match='helloworld'>
 
         real    0m0.048s
